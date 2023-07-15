@@ -24,7 +24,8 @@ router.post('/agregar-datos', (ctx) => {
 });
 
 router.get('/datos', (ctx) => {
-    ctx.body = datosArray;
+    ctx.response.type = 'application/json'; 
+    ctx.response.body = JSON.stringify(datosArray); 
 });
 
 
