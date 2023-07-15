@@ -27,7 +27,7 @@ router.get('/datos', (ctx) => {
     ctx.body = datosArray;
 });
 
-app.use(bodyParser());
+
 app.use(KoaLogger());
 app.use(cors({ 
     origin: "*" 
