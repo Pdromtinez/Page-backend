@@ -8,6 +8,7 @@ const cors = require("@koa/cors");
 
 const app = new Koa();
 const router = new Router();
+
 const datosArray = [{
     nombre: 'Victor'
   },
@@ -46,7 +47,7 @@ router.get("/", (ctx, next) => {
 });
 
 router.post('/agregar-datos', (ctx) => {
-    const datos = JSON.stringify(ctx.request.body);
+    const datos = JSON.parse(ctx.request.body);
 
     datosArray.push(datos);
 
