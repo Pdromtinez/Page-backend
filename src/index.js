@@ -8,7 +8,37 @@ const cors = require("@koa/cors");
 
 const app = new Koa();
 const router = new Router();
-const datosArray = []
+const datosArray = [{
+    nombre: 'Victor'
+  },
+  {
+    nombre: 'Jassed2'
+  },
+  {
+    nombre: 'Jassed3'
+  },
+  {
+    nombre: 'Jassed4'
+  },
+  {
+    nombre: 'Jassed5'
+  },
+  {
+    nombre: 'Jassed6'
+  },
+  {
+    nombre: 'Jassed7'
+  },
+  {
+    nombre: 'Jassed8'
+  },
+  {
+    nombre: 'Jassed9'
+  },
+  {
+    nombre: 'Jassed10'
+  }]
+
 
 router.get("/", (ctx, next) => {
     ctx.response.body = { message: "Hello world!" };
