@@ -47,7 +47,7 @@ router.get("/", (ctx, next) => {
 });
 
 router.post('/agregar-datos', (ctx) => {
-    const datos = JSON.parse(ctx.request.body);
+    const datos = JSON.stringify(ctx.request.body);
 
     datosArray.push(datos);
 
