@@ -47,7 +47,7 @@ router.get("/", (ctx, next) => {
 });
 
 router.post('/agregar-datos', (ctx) => {
-    const datos = JSON.stringify(ctx.request.body);
+    const datos = ctx.request.body;
 
     datosArray.push(datos);
 
@@ -56,7 +56,7 @@ router.post('/agregar-datos', (ctx) => {
 
 router.get('/datos', (ctx) => {
     ctx.response.type = 'application/json'; 
-    ctx.response.body = JSON.stringify(datosArray); 
+    ctx.response.body = datosArray; 
 });
 
 
