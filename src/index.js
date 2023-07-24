@@ -5,42 +5,20 @@ const Koa = require("koa");
 const { default: koaBody } = require("koa-body");
 const KoaLogger = require("koa-logger");
 const cors = require("@koa/cors");
-
+const path = require('path');
 const app = new Koa();
+const fs = require('fs');
 const router = new Router();
 
-const datosArray = [{
-    nombre: 'Victor'
-  },
-  {
-    nombre: 'Jassed2'
-  },
-  {
-    nombre: 'Jassed3'
-  },
-  {
-    nombre: 'Jassed4'
-  },
-  {
-    nombre: 'Jassed5'
-  },
-  {
-    nombre: 'Jassed6'
-  },
-  {
-    nombre: 'Jassed7'
-  },
-  {
-    nombre: 'Jassed8'
-  },
-  {
-    nombre: 'Jassed9'
-  },
-  {
-    nombre: 'Jassed10'
-  }]
+
+const rutaCarpetaImagenes = './Avatares sin fondo';
 
 
+const datosArray = []
+
+    const indiceAleatorio = Math.floor(Math.random() * ArrayDeImagenes.length);
+    const imagenAleatoria = imagenesDisponibles.splice(indiceAleatorio, 1)[0];
+//----------------------------------------------------------------------------------
 router.get("/", (ctx, next) => {
     ctx.response.body = { message: "Hello world!" };
     ctx.status = 200;
@@ -72,3 +50,21 @@ app.use(router.routes()).use(router.allowedMethods());
 app.listen(PORT, () => {
     console.log(`app listening on port: ${PORT}`);
 });
+
+fs.readdir(rutaCarpetaImagenes, (err, archivos) => {
+  if (err) {
+    console.error('Error al leer la carpeta:', err);
+    return;
+  }
+
+  // Filtrar solo los archivos con extensiones de imagen (puedes ajustar esto según tus necesidades)
+  const extensionesImagenes = [ '.png',];
+  const imagenes = archivos.filter(archivo => extensionesImagenes.includes(path.extname(archivo)));
+
+  // Crear el array de URLs de imágenes
+  const arrayDeImagenes = imagenes.map(imagen => path.join(rutaCarpetaImagenes, imagen));
+
+  // Aquí tienes tu array de URLs de imágenes listo para usar
+  console.log(arrayDeImagenes);
+});
+
