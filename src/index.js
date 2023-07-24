@@ -10,8 +10,6 @@ const app = new Koa();
 const router = new Router();
 
 
-
-
 const datosArray = []
 
 
@@ -23,8 +21,14 @@ router.get("/", (ctx, next) => {
 
 router.post('/agregar-datos', (ctx) => {
     const datos = ctx.request.body;
+    
+    if (Array.isArray(datos)) {
+      datos.forEach(objeto => {
+        datosArray.push(objeto);
+      })} else {
+        datosArray.push(datos);
+      }
 
-    datosArray.push(datos);
 
     ctx.body = { message: 'Datos agregados correctamente' };
 });
