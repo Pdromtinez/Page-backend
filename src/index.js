@@ -20,17 +20,33 @@ router.get("/", (ctx, next) => {
 });
 
 router.post('/agregar-datos', (ctx) => {
-    const datos = ctx.request.body;
+  const nuevosDatos = ctx.request.body;
+
+  if (!Array.isArray(nuevosDatos)) {
+  
+    nuevosDatos = [nuevosDatos];
+  }
+
+  
+  datosArray.length = 0;
+
+  
+  nuevosDatos.forEach(objeto => {
+    datosArray.push(objeto);
+  });
+
+  ctx.body = { message: 'Datos agregados correctamente' };
+});
+
+
+router.post('/agregar-datosFormulario', (ctx) => {
+  const datos = ctx.request.body;
+  
+  datosArray.push(datos);
     
-    if (Array.isArray(datos)) {
-      datos.forEach(objeto => {
-        datosArray.push(objeto);
-      })} else {
-        datosArray.push(datos);
-      }
 
 
-    ctx.body = { message: 'Datos agregados correctamente' };
+  ctx.body = { message: 'Datos agregados correctamente' };
 });
 
 router.get('/datos', (ctx) => {
